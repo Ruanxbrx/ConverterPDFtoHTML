@@ -18,8 +18,7 @@ public class PDF2HTMLExample {
 	public static void main(String[] args) {
 		try {
 			generateHTMLFromPDF(PDF);
-			generatePDFFromHTML(HTML);
-		} catch (IOException | ParserConfigurationException | DocumentException e) {
+		} catch (IOException | ParserConfigurationException e) {
 			e.printStackTrace();
 		}
 	}
@@ -35,11 +34,4 @@ public class PDF2HTMLExample {
 		}
 	}
 
-	private static void generatePDFFromHTML(String filename) throws ParserConfigurationException, IOException, DocumentException {
-		Document document = new Document();
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("src/output/html.pdf"));
-		document.open();
-		XMLWorkerHelper.getInstance().parseXHtml(writer, document, new FileInputStream(filename));
-		document.close();
-	}
 }
